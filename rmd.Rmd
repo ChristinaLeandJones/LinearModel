@@ -11,14 +11,18 @@ data <- read.csv(file ="https://onlinestatbook.com/case_studies_rvls/physical_st
 require(tidyverse)
 require(tigerstats)
 ```
-##Introduction
+## Introduction
+
 Then form three regression models; Model1 is SIMS~ARM, Model2 is SIMS~GRIP, and Model3 is SIMS~ARM+GRIP. For each model find a 95% prediction interval of SIMS given a value of 94  for GRIP and 88 for ARM. Compare Model1 with Model3 using anova. Write it up in a markdown document, push the project up to your github account and submit it back to canvas as link. 
+
+
+## SIMS~ARM Regression
 
 ```{r}
 plot(SIMS~ARM,data=data)
 ```
 
-
+This is a generic scatter plot of SIMS vs ARM
 ```{r}
 cor(SIMS~ARM,data=data)
 ```
@@ -36,15 +40,83 @@ summary.lm(model.1)
 ```
 The equation is SIMS= -4.095160 = 0.054563 * ARM
 
+
+```{r}
+basicNN <- ggplot(data,aes(y=SIMS,x=ARM))
+```
+
+
+```{r}
+basicNN + geom_point() + geom_smooth(method=lm)
+``` 
+This scatter plot shows the blue line which is best linear fit to predict what an average sim response would be for any ARM strength.
+
+The shaded part is the uncertainty of the blue line itself.
+
+Shows all of the data points of each individual score and corresponding arm strength.
+
+
 ```{r}
 newData=data.frame(GRIP=94,ARM=88)
 predict.lm(model.1,newData,interval="prediction")
 ```
+fit is the predicted ARM score when you have an ARM strength of 88.
+
+the lwr and upr are the 95% confidence intervals for predicted SIMS score when the ARM is 88.
 
 
-## SIMS~ARM Regression
 
 ## SIMS~GRIP REGRESSION
+```{r}
+plot(SIMS~ARM,data=data)
+```
+
+This is a generic scatter plot of SIMS vs ARM
+```{r}
+cor(SIMS~ARM,data=data)
+```
+
+
+
+
+the greater the pounds of arm force(ARM), the greater the simulation(SIMS)
+
+[1 0.6860073]
+
+```{r}
+model.1 <- lm(SIMS~ARM,data=data)
+summary.lm(model.1)
+```
+The equation is SIMS= -4.095160 = 0.054563 * ARM
+
+
+```{r}
+basicNN <- ggplot(data,aes(y=SIMS,x=ARM))
+```
+
+
+```{r}
+basicNN + geom_point() + geom_smooth(method=lm)
+``` 
+This scatter plot shows the blue line which is best linear fit to predict what an average sim response would be for any ARM strength.
+
+The shaded part is the uncertainty of the blue line itself.
+
+Shows all of the data points of each individual score and corresponding arm strength.
+
+
+```{r}
+newData=data.frame(GRIP=94,ARM=88)
+predict.lm(model.1,newData,interval="prediction")
+```
+fit is the predicted ARM score when you have an ARM strength of 88.
+
+the lwr and upr are the 95% confidence intervals for predicted SIMS score when the ARM is 88.
+
+
+
+
+
 
 ## SIMS~ARM+GRIP 
 
