@@ -67,13 +67,14 @@ the lwr and upr are the 95% confidence intervals for predicted SIMS score when t
 
 
 ## SIMS~GRIP REGRESSION
+
 ```{r}
-plot(SIMS~ARM,data=data)
+plot(SIMS~GRIP,data=data)
 ```
 
 This is a generic scatter plot of SIMS vs ARM
 ```{r}
-cor(SIMS~ARM,data=data)
+cor(SIMS~GRIP,data=data)
 ```
 
 
