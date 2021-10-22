@@ -121,7 +121,7 @@ model1(SIMS~ARM)has a slightly lower Residual standered error score of 1.226 whi
 model1(SIMS~ARM) has a higher adjusted r squared score of 0.467 while model2(SIMS~GRIP) scored a lower 0.4053
 
 
-model1 appears to be slightly better model because it has a lower Residual standard error score then model1 and also has a higher adjusted R sqaure score than model2 as well. 
+model1 appears to be slightly better model because it has a lower Residual standard error score then model1 and also has a higher adjusted R square score than model2 as well. 
 
 
 
@@ -129,22 +129,28 @@ model1 appears to be slightly better model because it has a lower Residual stand
 
 
 
-## R Markdown
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+```{r}
+model.3 <- lm(SIMS~ARM + GRIP,data=data)
+summary.lm(model.3)
 ```
 
-## Including Plots
+ model3 appears to be the better model because the adjusted R squared score than model1 or model2, and also scored lower in the Residual standard error than model1 or 2
+ 
+## inferential test
 
-You can also embed plots, for example:
+This is the inferential test to compare models.
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+The test is anova
+
+$H_0$:There is no difference in how well each model fit the data between models (model1,model3)
+$H_A$:There is a difference in how well each model fits the data between models (model1,model3)
+
+ 
+```{r}
+anova(model.1,model.3)
 ```
+The P value is 0.00004994 which is very low.
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+We reject the Null hypothesis because the P value is too low;There is a difference between model1 and model3, we have evidence that model3 is better than model1.
+
